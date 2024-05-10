@@ -14,6 +14,7 @@ class Detection():
             help_one.columns = column_names
             self.__mainDict = pd.concat([self.__mainDict, help_one], ignore_index=True)
     
+    # builds a regex basing on the string
     def __string_to_regex(string):
         return
 
@@ -35,3 +36,8 @@ class Detection():
 # regex przyjmujacy dowolne znaki oprocz kropki kiedy jest spacja
 # lub tylko myslnik i litery (opcjonalnie poszczegolne znaki)
 # o ile "biala przestrzen" zaczyna i konczy sie myslnikiem
+# warto jeszcze dodac kolumne sprawdzajaca czy slowo juz wystapilo w tekscie ktory idzie do sprawdzenia
+# funkcja odpowiadajaca za ta kolumne powinna przerwac dzialanie przy pierwszym
+# wykryciu zeby zaoszczedzic moc obliczeniowa. funkcja ta powinna brac jako test regexa,
+# a dopiero jezeli go nie ma brac kolumne z wyrazeniem.
+# to jednak dopiero na etapie sprawdzania. najpierw regex
