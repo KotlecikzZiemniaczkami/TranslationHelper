@@ -1,5 +1,5 @@
 import pandas as pd
-import regex as re
+import re
 
 # class responsible for file analysis
 # and comparing words in file with dictionary
@@ -16,7 +16,14 @@ class Detection():
     
     # builds a regex basing on the string
     def __string_to_regex(string):
-        return
+        help_str = r''
+        for i in string:
+            num = ord(i)
+            if (num > 64 and num < 91) or (num > 96 and num < 123):
+                help_str += i
+            else:
+                help_str += r'([-," "]\w+[-," "]|[-," "])'
+        return help_str
 
     # adds regex column manually
     def add_re(self):
