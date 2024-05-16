@@ -1,6 +1,19 @@
 import pandas as pd
 import re
 
+# builds a regex basing on the string
+def string_to_regex(string):
+    help_str = r''
+    for i in string:
+        for j in i:
+            print(j)
+            num = ord(j)
+            if (num > 64 and num < 91) or (num > 96 and num < 123):
+                help_str += j
+            else:
+                help_str += r'([-," "]\w+[-," "]|[-," "])'
+    return help_str
+
 # class responsible for file analysis
 # and comparing words in file with dictionary
 class Detection():
@@ -14,27 +27,28 @@ class Detection():
             help_one.columns = column_names
             self.__mainDict = pd.concat([self.__mainDict, help_one], ignore_index=True)
     
-    # builds a regex basing on the string
-    def __string_to_regex(string):
-        help_str = r''
-        for i in string:
-            num = ord(i)
-            if (num > 64 and num < 91) or (num > 96 and num < 123):
-                help_str += i
-            else:
-                help_str += r'([-," "]\w+[-," "]|[-," "])'
-        return help_str
+    
 
     # adds regex column manually
     def add_re(self):
         if 'regex' in self.__mainDict.columns:
             return 'You have already added regex column'
+        else:
+            self.__mainDict['regex'] = self.__mainDict['word'].apply(string_to_regex)
         
     # deletes regex column manually
     def del_re(self):
         if 'regex' not in self.__mainDict.columns:
             return 'Regex already don\'t exist'
         self.__mainDict.drop(labels=['regex'], inplace=True)
+    
+    def show(self):
+        print(self.__mainDict)
+
+to_det = Detection(['words.csv'])
+to_det.show()
+to_det.add_re()
+to_det.show()
 
 ### TO DO
 # ogolnie wyrazenie nie bedzie szlo dalej niz zdanie
