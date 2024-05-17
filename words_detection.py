@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+import numpy as np
 
 # builds a regex basing on the string
 def string_to_regex(string):
@@ -26,8 +27,6 @@ class Detection():
             help_one = pd.read_csv(dictPaths[i], header = None)
             help_one.columns = column_names
             self.__mainDict = pd.concat([self.__mainDict, help_one], ignore_index=True)
-    
-    
 
     # adds regex column manually
     def add_re(self):
@@ -41,6 +40,15 @@ class Detection():
         if 'regex' not in self.__mainDict.columns:
             return 'Regex already don\'t exist'
         self.__mainDict.drop(labels=['regex'], inplace=True)
+
+    # is adding NaN
+    # NaN because it will be easy to get rid of it
+    def __nan_add(self):
+        return np.nan
+    # Function which is responsible for filtering dictionary
+    # We do not want to have useless words in dictionry
+    def filtering(self):
+        self.__mainDict['is in txt?'] = np.nan
     
     def show(self):
         print(self.__mainDict)
@@ -48,6 +56,8 @@ class Detection():
 to_det = Detection(['words.csv'])
 to_det.show()
 to_det.add_re()
+to_det.show()
+to_det.filtering()
 to_det.show()
 
 ### TO DO
