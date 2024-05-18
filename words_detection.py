@@ -78,16 +78,3 @@ to_det.add_re()
 to_det.show()
 to_det.filtering('list.txt')
 to_det.show()
-
-### TO DO
-# ogolnie wyrazenie nie bedzie szlo dalej niz zdanie
-# trzeba wiec dodac kolumne "regex" do self.__mainDict
-# i do srodka wyrazen zawierajacych znaki biale wprowadzic
-# regex przyjmujacy dowolne znaki oprocz kropki kiedy jest spacja
-# lub tylko myslnik i litery (opcjonalnie poszczegolne znaki)
-# o ile "biala przestrzen" zaczyna i konczy sie myslnikiem
-# warto jeszcze dodac kolumne sprawdzajaca czy slowo juz wystapilo w tekscie ktory idzie do sprawdzenia
-# funkcja odpowiadajaca za ta kolumne powinna przerwac dzialanie przy pierwszym
-# wykryciu zeby zaoszczedzic moc obliczeniowa. funkcja ta powinna brac jako test regexa,
-# a dopiero jezeli go nie ma brac kolumne z wyrazeniem.
-# to jednak dopiero na etapie sprawdzania. najpierw regex
