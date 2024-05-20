@@ -56,10 +56,8 @@ class Detection():
                         if self.__mainDict['is in txt?'].at[i] == 1:
                             continue
                         to_re = self.__mainDict['regex'].at[i]
-                        #to_re = re.compile(f'{to_re}', re.IGNORECASE)
                         is_in_txt = re.search(to_re, sentence)
                         if is_in_txt:
-                            print(sentence)
                             self.__mainDict['is in txt?'].at[i] = 1
                     sentence = ''
                 elif not sign:
@@ -68,13 +66,11 @@ class Detection():
                     sentence += sign
         self.__mainDict.dropna(inplace = True)
 
-    
+    # is just showing the current state of data frame
     def show(self):
         print(self.__mainDict)
 
 to_det = Detection(['words.csv'])
-to_det.show()
 to_det.add_re()
-to_det.show()
 to_det.filtering('list.txt')
 to_det.show()
